@@ -7,18 +7,17 @@ import { Purchases } from '@ionic-native/purchases/ngx';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  offerings: any;
   show: any;
 
   constructor(private purchases: Purchases) {
     this.getOfferings();
   }
 
-  getOfferings() {
-    this.offerings = this.purchases.getOfferings();
-    if (this.offerings.current != null) {
-      this.show = this.offerings.current;
-      console.log('yes!', this.show);
+  async getOfferings() {
+    const offerings = await this.purchases.getOfferings();
+    if (offerings.current !== null) {
+      // this.show = this.offerings.current;
+      console.log('yes!', offerings.current);
     } else {
       console.log('somethinsg missing');
     }
