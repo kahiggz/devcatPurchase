@@ -13,9 +13,10 @@ dependencies {
     implementation project(':capacitor-haptics')
     implementation project(':capacitor-keyboard')
     implementation project(':capacitor-status-bar')
-
+    implementation "com.revenuecat.purchases:purchases-hybrid-common:1.9.1"
+    implementation "androidx.annotation:annotation:[1.2.0]"
 }
-
+apply from: "../../node_modules/cordova-annotated-plugin-android/build.gradle"
 
 if (hasProperty('postBuildExtras')) {
   postBuildExtras()
