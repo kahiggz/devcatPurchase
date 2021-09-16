@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devcattest.iap">
 
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.android.vending.INTERET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
