@@ -1,0 +1,7 @@
+{
+  "name": "devcatPurchase",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

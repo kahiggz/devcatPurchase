@@ -1,0 +1,6 @@
+{
+	"appId": "com.devcattest.iap",
+	"appName": "devcatPurchase",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
