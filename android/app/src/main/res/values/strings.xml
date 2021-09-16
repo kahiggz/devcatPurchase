@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">devcatPurchase</string>
+    <string name="title_activity_main">devcatPurchase</string>
+    <string name="package_name">com.devcattest.iap</string>
+    <string name="custom_url_scheme">com.devcattest.iap</string>
+</resources>
