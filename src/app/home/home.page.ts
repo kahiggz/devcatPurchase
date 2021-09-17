@@ -10,6 +10,9 @@ import { LoadingController, ToastController } from '@ionic/angular';
 export class HomePage {
 
   Offerings: any;
+  anonymous: boolean;
+  userId: string;
+  subscriptionActive: any;
 
   constructor(
     private purchases: Purchases,
@@ -21,12 +24,15 @@ export class HomePage {
     this.getOfferings();
   }
 
+  //PULLDOWN REFRESH//
   refresh(event) {
     this.getOfferings().then(() => {
       event.target.complete();
     });
   }
 
+
+  //GET OFFERINGS FROM REVENUE CAT & ASSIGN THEM TO ARRAY  //
   async getOfferings() {
 
     const loading = await this.loadingController.create({
@@ -43,20 +49,20 @@ export class HomePage {
     } else {
       console.log('somethinsg missing');
       loading.dismiss();
-
-    }
-
+    };
   }
 
+
+  //PAYMENT FUNCTIONALITY ON CLICKING A SUBSCRIPTION OFFERING CARD//
   async payment(offering) {
-
     const purchaseMade = await this.purchases.purchasePackage(offering);
-   if(purchaseMade.purchaserInfo.entitlements.active.my_entitlement_identifier ){
-     this.success();
-   }
-
+    if (purchaseMade.purchaserInfo.entitlements.active.my_entitlement_identifier) {
+      this.success();
+    }
   }
 
+
+  //SUCCESS TOAST ON SUCCESSFUL PAYMENT//
   async success() {
     const toast = await this.toastController.create({
       message: 'You are now a paid Subscriber!.',
@@ -65,5 +71,37 @@ export class HomePage {
     });
     toast.present();
   }
+
+
+
+  //**ADDITIONAL FUNCTIONALITY TIED TO REVENUECAT**//
+
+  //GET USER SUBSCRIPTION STATUS//
+  async checkStatus() {
+    const purchaserStatus = await this.purchases.getPurchaserInfo();
+    if (purchaserStatus.entitlements.active) {
+      //user is pro and can do something
+    } else {
+      //tell user is not pro 
+    }
+  }
+
+
+  //RESTORE PAYMENTS//
+  async restorePurchases() {
+    const restore = await this.purchases.restoreTransactions();
+  }
+
+
+  //IDENTIFY USER, USEFULL FRO REGISTARTION//
+  async getUserData() {
+    this.anonymous = await this.purchases.isAnonymous();
+    this.userId = await this.purchases.getAppUserID();
+
+    const purchaser = await this.purchases.getPurchaserInfo();
+    this.subscriptionActive = purchaser.entitlements.active ;
+
+  }
+
 
 }
