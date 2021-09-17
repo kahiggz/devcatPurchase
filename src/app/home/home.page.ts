@@ -56,9 +56,7 @@ export class HomePage {
   //PAYMENT FUNCTIONALITY ON CLICKING A SUBSCRIPTION OFFERING CARD//
   async payment(offering) {
     const purchaseMade = await this.purchases.purchasePackage(offering);
-    if (purchaseMade.purchaserInfo.entitlements.active.my_entitlement_identifier != undefined) {
-      this.success();
-    }
+    this.success();
   }
 
 
