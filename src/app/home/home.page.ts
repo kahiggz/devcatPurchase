@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Purchases } from '@ionic-native/purchases/ngx';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +13,18 @@ export class HomePage {
 
   constructor(
     private purchases: Purchases,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    public toastController: ToastController) {
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.getOfferings();
+  }
+
+  refresh(event) {
+    this.getOfferings().then(() => {
+      event.target.complete();
+    });
   }
 
   async getOfferings() {
@@ -39,7 +46,24 @@ export class HomePage {
 
     }
 
+  }
 
+  async payment(offering) {
+
+    const purchaseMade = await this.purchases.purchasePackage(offering);
+   if(purchaseMade.purchaserInfo.entitlements.active.my_entitlement_identifier ){
+     this.success();
+   }
+
+  }
+
+  async success() {
+    const toast = await this.toastController.create({
+      message: 'You are now a paid Subscriber!.',
+      position: 'top',
+      duration: 5000
+    });
+    toast.present();
   }
 
 }

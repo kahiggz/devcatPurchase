@@ -7,19 +7,28 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let offering of Offerings ;let i=index">
+  
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullMin="100" pullMax="200">
+    <ion-refresher-content 
+      pullingIcon="arrow-down-outline" 
+      pullingText="Pull to refresh" 
+      refreshingSpinner="crescent"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card (click)="payment(offering)" *ngFor="let offering of Offerings ;let i=index">
     <ion-row>
 
       <ion-col size="9">
-        <p class="item-name  color-secondary">{{offering.product.title}}</p>
-        <p class="date-item color-primary"> {{offering.product.description}}</p>
+        <p class="title">{{offering.product.title}}</p>
+        <p class="description"> {{offering.product.description}}</p>
       </ion-col>
 
       <ion-col size="3">
-        <p class="item-name color-secondary">{{offering.product.currency_code}}{{offering.product.price}}</p>
+        <p class="price">{{offering.product.currency_code}}{{offering.product.price}}</p>
       </ion-col>
     </ion-row>
   </ion-card>
 
-  <ion-button (click)="getOfferings()" shape="round">Round Button</ion-button>
 </ion-content>

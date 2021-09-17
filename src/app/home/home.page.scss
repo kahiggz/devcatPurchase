@@ -26,10 +26,21 @@
   text-decoration: none;
 }
 
-.item-name {
-	// color: #8c8c71;
+.title {
+	font-size: 16px;
+	font-weight: 800;
+	margin: 0;
+}
+
+.description{
+	font-size: 14px;
+	font-weight: 500;
+  padding-top: 8px;
+	margin: 0;
+}
+
+.price{
 	font-size: 15px;
-	// padding-top: 10px;
-	font-weight: 900;
+	font-weight: 500;
 	margin: 0;
 }
