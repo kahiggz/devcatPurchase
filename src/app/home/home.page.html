@@ -10,12 +10,12 @@
   <ion-card *ngFor="let offering of Offerings ;let i=index">
     <ion-row>
 
-      <ion-col size="10">
+      <ion-col size="9">
         <p class="item-name  color-secondary">{{offering.product.title}}</p>
         <p class="date-item color-primary"> {{offering.product.description}}</p>
       </ion-col>
 
-      <ion-col size="2">
+      <ion-col size="3">
         <p class="item-name color-secondary">{{offering.product.currency_code}}{{offering.product.price}}</p>
       </ion-col>
     </ion-row>
