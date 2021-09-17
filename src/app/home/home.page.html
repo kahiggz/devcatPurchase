@@ -7,16 +7,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngFor="let offering of Offerings ;let i=index">
+    <ion-row>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-col size="10">
+        <p class="item-name  color-secondary">{{offering.product.title}}</p>
+        <p class="date-item color-primary"> {{offering.product.description}}</p>
+      </ion-col>
+
+      <ion-col size="2">
+        <p class="item-name color-secondary">{{offering.product.currency_code}}{{offering.product.price}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
   <ion-button (click)="getOfferings()" shape="round">Round Button</ion-button>
 </ion-content>

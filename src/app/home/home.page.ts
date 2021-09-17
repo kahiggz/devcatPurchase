@@ -7,7 +7,8 @@ import { Purchases } from '@ionic-native/purchases/ngx';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  show: any;
+
+  Offerings: any;
 
   constructor(private purchases: Purchases) {
     this.getOfferings();
@@ -16,8 +17,8 @@ export class HomePage {
   async getOfferings() {
     const offerings = await this.purchases.getOfferings();
     if (offerings.current !== null) {
-      // this.show = this.offerings.current;
-      console.log('yes!', offerings.current);
+      this.Offerings = offerings.current.availablePackages;
+      console.log('yes!', offerings.current.availablePackages);
     } else {
       console.log('somethinsg missing');
     }
